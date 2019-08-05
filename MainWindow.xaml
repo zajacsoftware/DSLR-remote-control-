@@ -1,0 +1,54 @@
+﻿<Window x:Class="DSLR-remote-control.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DSLR-remote-control"
+        mc:Ignorable="d"
+        Title="Canon DSLR Remote Control" Height="694" Width="645" MinWidth="645" MinHeight="694" Closing="Window_Closing">
+    <Grid>
+        <GroupBox x:Name="InitGroupBox" Header="Init" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="180" Width="171">
+            <Grid>
+                <Label x:Name="SessionLabel" Content="No open session" Margin="10,2,10,0" VerticalAlignment="Top"/>
+                <ListBox x:Name="CameraListBox" Height="84" Margin="10,33,10,0" VerticalAlignment="Top"/>
+                <Button x:Name="SessionButton" Content="Open Session" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Width="91" Height="26" Click="OpenSessionButton_Click"/>
+                <Button x:Name="RefreshButton" Content="↻" HorizontalAlignment="Left" Margin="114,122,0,0" VerticalAlignment="Top" Width="35" FontSize="16" Height="26" Click="RefreshButton_Click"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="SettingsGroupBox" Header="Settings" HorizontalAlignment="Left" Margin="186,10,0,0" VerticalAlignment="Top" Height="180" Width="439" Grid.ColumnSpan="2" IsEnabled="False">
+            <Grid>
+                <ComboBox x:Name="AvCoBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="AvCoBox_SelectionChanged"/>
+                <ComboBox x:Name="TvCoBox" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="TvCoBox_SelectionChanged"/>
+                <ComboBox x:Name="ISOCoBox" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="ISOCoBox_SelectionChanged"/>
+                <ProgressBar x:Name="MainProgressBar" HorizontalAlignment="Left" Height="22" Margin="10,91,0,0" VerticalAlignment="Top" Width="137"/>
+                <Label Content="Av" HorizontalAlignment="Left" Margin="118,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.447,0.538"/>
+                <Label Content="Tv" HorizontalAlignment="Left" Margin="118,33,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.447,0.538"/>
+                <Label Content="ISO" HorizontalAlignment="Left" Margin="118,60,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.447,0.538"/>
+                <Button x:Name="TakePhotoButton" HorizontalAlignment="Left" Margin="162,64,0,0" VerticalAlignment="Top" Width="123" Height="49" FontWeight="Bold" FontSize="16" Click="TakePhotoButton_Click">
+                    <TextBlock TextAlignment="Center" Width="132.93"><Run Text="Take"/><LineBreak/><Run Text="Photo"/><Run Text=" Test"/><Run Text=" "/></TextBlock>
+                </Button>
+                <Slider x:Name="BulbSlider" HorizontalAlignment="Left" Margin="162,37,0,0" VerticalAlignment="Top" Width="110" Minimum="1" Maximum="200" Value="30" LargeChange="10" TickFrequency="10" ToolTip="Bulb (in seconds)" ValueChanged="BulbSlider_ValueChanged"/>
+                <TextBox x:Name="SavePathTextBox" HorizontalAlignment="Left" Height="23" Margin="10,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="297" IsEnabled="False"/>
+                <TextBox x:Name="BulbBox" HorizontalAlignment="Left" Height="23" Margin="277,37,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="30" UndoLimit="0" ToolTip="Bulb (in seconds)" TextChanged="BulbBox_TextChanged"/>
+                <GroupBox Header="Save To" HorizontalAlignment="Left" Margin="312,7,0,0" VerticalAlignment="Top" Height="106" Width="105">
+                    <Grid>
+                        <RadioButton x:Name="STCameraRdButton" Content="Camera" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" GroupName="SaveToGroup" FontSize="14" IsChecked="False" Checked="SaveToRdButton_Checked"/>
+                        <RadioButton x:Name="STComputerRdButton" Content="Computer" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" GroupName="SaveToGroup"  IsChecked="true" FontSize="14" Checked="SaveToRdButton_Checked"/>
+                        <RadioButton x:Name="STBothRdButton" Content="Both" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" GroupName="SaveToGroup" FontSize="14" Checked="SaveToRdButton_Checked"/>
+                    </Grid>
+                </GroupBox>
+                <Button x:Name="BrowseButton" Content="Browse" HorizontalAlignment="Left" Margin="312,125,0,0" VerticalAlignment="Top" Width="105" Click="BrowseButton_Click" IsEnabled="False"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="LiveViewGroupBox" Header="" Margin="10,195,10,10" Grid.ColumnSpan="2" IsEnabled="False">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="54*"/>
+                    <ColumnDefinition Width="551*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="hostInfo" Margin="0,0,10,408.667" Grid.ColumnSpan="2">server not started</TextBlock>
+                <Canvas x:Name="LVCanvas" Margin="10,37,10,10" Background="LightGray" Grid.ColumnSpan="2" />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
